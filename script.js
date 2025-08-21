@@ -7,17 +7,16 @@ function submitForm(event) {
 
   const form = event.target;
 
-  // WhatsApp message
-  const whatsappMessage = `Hello Abhinav,\n\nYou received a new contact form submission:\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
+  const whatsappMessage = `Hello Abhinav,\n\nYou received a new contact form submission:\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}\n\n-------------------\n📩 Sent from Portfolio Website`;
   const encodedMsg = encodeURIComponent(whatsappMessage);
   const whatsappURL = `https://wa.me/917439022306?text=${encodedMsg}`;
 
-  // Submit form to email (FormSubmit)
   form.submit();
 
-  // Also open WhatsApp
   setTimeout(() => {
     window.open(whatsappURL, "_blank");
+    form.reset();
+    alert("✅ Your message has been sent successfully!");
   }, 500);
 }
 
@@ -46,15 +45,29 @@ themeIcon.addEventListener("click", () => {
   setTheme(!isDark);
 });
 
-const text = "Abhinav Tiwari";
 const typedText = document.getElementById("typedText");
-let index = 0;
+const textArray = ["Abhinav Tiwari", "Web Developer", "Problem Solver"];
+let arrayIndex = 0;
+let charIndex = 0;
 
 function typeWriter() {
-  if (index < text.length) {
-    typedText.textContent += text.charAt(index);
-    index++;
+  if (charIndex < textArray[arrayIndex].length) {
+    typedText.textContent += textArray[arrayIndex].charAt(charIndex);
+    charIndex++;
     setTimeout(typeWriter, 100);
+  } else {
+    setTimeout(eraseWriter, 1200);
+  }
+}
+
+function eraseWriter() {
+  if (charIndex > 0) {
+    typedText.textContent = textArray[arrayIndex].substring(0, charIndex - 1);
+    charIndex--;
+    setTimeout(eraseWriter, 60);
+  } else {
+    arrayIndex = (arrayIndex + 1) % textArray.length;
+    setTimeout(typeWriter, 200);
   }
 }
 

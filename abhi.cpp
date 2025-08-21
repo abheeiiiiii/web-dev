@@ -1,37 +1,77 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node {
+struct node {
     int data;
-    struct Node *next;
+    struct node *next;
+    
 };
 
-// Function to print the linked list
-void abhi(struct Node *ptr) {
-    while (ptr != NULL) {
-        printf("%d ", ptr->data);
-        ptr = ptr->next;
+/*int isEmpty(struct stack *ptr)
+    if(ptr->size == -1)
+    {
+        return 1;
+    
+    }
+    else {
+        return 0;
     }
 }
 
+
+int isFull(struct stack *ptr)
+{
+    if(ptr->top == ptr->size-1)
+    {
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}*/
+
+
+
 int main() {
-    // Allocate memory for nodes
-    struct Node *head = (struct Node*)malloc(sizeof(struct Node));
-    struct Node *second = (struct Node*)malloc(sizeof(struct Node));
-    struct Node *third = (struct Node*)malloc(sizeof(struct Node));
+   struct node *HEAD;
+    struct node *FIRST;
+     struct node *SECOND;
+      struct node *TAIL;
 
-    // Assign data and connect nodes
-    head->data = 7;
-    head->next = second;
+      HEAD=(struct node*)malloc(sizeof(struct node));
+      FIRST=(struct node*)malloc(sizeof(struct node));
+      SECOND=(struct node*)malloc(sizeof(struct node));
+      TAIL=(struct node*)malloc(sizeof(struct node));
+   
+  HEAD->data=4;
+HEAD->next=FIRST;
 
-    second->data = 9;
-    second->next = third;
+   FIRST->data=5;
+   FIRST->next=SECOND;
 
-    third->data = 11;
-    third->next = NULL;
+   SECOND->data=6;
+   SECOND->next=TAIL;
 
-    // Print the list
-    abhi(head);
+
+   TAIL->data=7;
+   TAIL->next=NULL;
+
+   printf("." ,*HEAD);
+   printf("." ,*FIRST);
+   printf("." ,*SECOND);
+   printf("." ,*TAIL);
+
+
+/*if(isEmpty(S))
+{
+    printf("stack is empty");
+
+}
+
+else{
+    printf("stack is not empty");
+}
+*/
 
     return 0;
 }
